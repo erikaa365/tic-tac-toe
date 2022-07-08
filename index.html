@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-tac-toe</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>TIC-TAC-TOE</h1>
+    </div>
+    
+    <div class="main">
+        <div class="left">
+            <div id="resultHeader">WINS:</div>
+
+            <div class="players">
+                <div id="player1NameDisplay" class="playerNameDisplay"></div>
+                <div id="player1ResultDisplay" class="playerResultDisplay"></div>
+            </div>
+
+            <div class="players">
+                <div id="player2NameDisplay" class="playerNameDisplay"></div>
+                <div id="player2ResultDisplay" class="playerResultDisplay"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div id="gameboard">
+                <div class="gameboard" id="topLeft"></div>
+                <div class="gameboard" id="topMiddle"></div>
+                <div class="gameboard" id="topRight"></div>
+                <div class="gameboard" id="middleLeft"></div>
+                <div class="gameboard" id="middle"></div>
+                <div class="gameboard" id="middleRight"></div>
+                <div class="gameboard" id="bottomLeft"></div>
+                <div class="gameboard" id="bottomMiddle"></div>
+                <div class="gameboard" id="bottomRight"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">Footer</div>
+
+
+
+
+    <div class="wrapper">
+        <form id="addGameForm" class="form" style="display: none;" >
+            <input type="text" id="player1" class="playerNameInput" placeholder="Player 1">
+
+            <input type="text" id="player2" class="playerNameInput" placeholder="Player 2">
+
+
+            <div id="winsLabel">
+                <label for="wins">How many wins?</label>
+            </div>
+
+
+            <div id="winsSetting">
+                <input type="range" id="wins" min="1" max="10" value="0">
+                <p id="winsSettingDisplay"></p>
+            </div>
+        </form>    
+
+        <div id="winSingleMatch" style="display: none;">Player 1 won this match!</div>
+
+        <div id="winGame" style="display: none;">
+            <p id="winGameText">Player 2 won the game!</p>
+
+            <div id="winGameBtns">
+                <button>Rematch</button>
+                <button>New game</button>
+            </div>
+        </div>
+
+            
+
+    </div>
+
+
+
+
+
+    <script src="./script.js"></script>
+</body>
+</html>

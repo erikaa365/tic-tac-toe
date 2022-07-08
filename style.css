@@ -1,0 +1,210 @@
+
+
+:root{
+    --background-color: rgb(233, 177, 177);
+    --container-background-color: rgb(188, 248, 182); 
+}
+
+body{
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
+    padding-bottom: 40px;
+
+    background-color: var(--background-color);
+}
+
+body *{
+    padding: 10px;
+}
+
+/*  HEADER  */
+.header{
+    border-color: orange;
+    text-align: center;
+}
+
+/*  MAIN PART  */
+.main{
+    height: 70vh;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left{
+    width: 300px;
+    background-color: lightgray;
+    border-radius: 30px;
+}
+
+#resultHeader{
+    text-align: center;
+}
+
+.players{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerNameDisplay{
+    min-width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    z-index: 1;
+
+    background-color: lightsalmon;
+}
+
+.playerResultDisplay{
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    z-index: 0;
+    margin-left: -20px;
+
+    background-color: var(--background-color);
+}
+
+
+.right{
+}
+
+#gameboard{
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+#gameboard > div{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    float: left;
+    border-right: 4px solid orange;
+    border-bottom: 4px solid orange;
+
+    margin: 0;
+    padding: 0;
+
+    height: 100px;
+    width: 100px;
+}
+
+#gameboard div:nth-child(3n){
+    border-right: none;
+}
+
+#gameboard div:nth-child(6)~div{
+    border-bottom: none;
+}
+
+
+
+/*  FOOTER  */
+.footer{
+    height: 40px;
+    width: 100vW;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+/*  GAME SETTINGS CONTAINER  */
+.wrapper{
+    display: block;
+}
+
+#addGameForm{
+    width: 300px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: var(--container-background-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    margin: -200px 0 0 -150px;
+}
+
+.playerNameInput{
+
+}
+
+#winsLabel{
+
+}
+
+#winsSetting{
+
+}
+
+#wins{
+
+}
+
+#winsSettingDisplay{
+
+}
+
+
+/* SINGLE MATCH WIN CONTAINER */
+#winSingleMatch{
+    width: 300px;
+    height: 100px;
+    background-color: var(--container-background-color);
+    border-radius: 30px;
+    text-align: center;
+    line-height: 100px;
+
+
+    display: block;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    z-index: 2;
+
+}
+
+/*  WIN GAME CONTAINER */
+#winGame{
+    width: 300px;
+    height: 250px;
+    background-color: var(--container-background-color);
+    border-radius: 30px;
+    text-align: center;
+
+
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    z-index: 3;
+}
+
+#winGameText{
+    line-height: 100px;
+}
+
+#winGameBtns{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 70px;
+}
+
+#winGameBtns button{
+    border-radius: 10px;
+    height: 50px;
+}
+
