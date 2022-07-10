@@ -18,12 +18,12 @@
 
             <div class="players">
                 <div id="player1NameDisplay" class="playerNameDisplay"></div>
-                <div id="player1ResultDisplay" class="playerResultDisplay"></div>
+                <div id="player1ResultDisplay" class="playerResultDisplay">0</div>
             </div>
 
             <div class="players">
                 <div id="player2NameDisplay" class="playerNameDisplay"></div>
-                <div id="player2ResultDisplay" class="playerResultDisplay"></div>
+                <div id="player2ResultDisplay" class="playerResultDisplay">0</div>
             </div>
         </div>
 
@@ -50,9 +50,9 @@
 
     <div class="wrapper">
         <form id="addGameForm" class="form" style="display: none;" >
-            <input type="text" id="player1" class="playerNameInput" placeholder="Player 1">
+            <input type="text" id="player1" name="player1" class="playerNameInput" placeholder="Player 1">
 
-            <input type="text" id="player2" class="playerNameInput" placeholder="Player 2">
+            <input type="text" id="player2" name="player2" class="playerNameInput" placeholder="Player 2">
 
 
             <div id="winsLabel">
@@ -61,10 +61,14 @@
 
 
             <div id="winsSetting">
-                <input type="range" id="wins" min="1" max="10" value="0">
+                <input type="range" id="wins" name="wins" min="1" max="10" value="0">
                 <p id="winsSettingDisplay"></p>
             </div>
+
+            <button type="submit">Submit</button>
         </form>    
+
+
 
         <div id="winSingleMatch" style="display: none;">Player 1 won this match!</div>
 
