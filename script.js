@@ -52,6 +52,7 @@ submitInput.addEventListener('click', getData, false);
 function game(firstPlayer, secondPlayer, wins){
 
             // Play round 
+    
     playRound();
 
     
@@ -66,9 +67,11 @@ function game(firstPlayer, secondPlayer, wins){
 
         function activateGameboard(){
                 for(let i=0; i<9; i++){
-                    gameboardFiles[i].addEventListener('click', playTurn, false);
+                    gameboardFiles[i].onclick = (e) => playTurn(e);
                 }
             }
+
+        let j = 0; 
 
         function playTurn(e){
                 // Disable filled file
@@ -80,16 +83,26 @@ function game(firstPlayer, secondPlayer, wins){
                 firstPlayer.turn = false;
                 secondPlayer.turn = true;
 
-                checkWin();
             }
             else{
                 e.target.textContent = 'O';
                 secondPlayer.turn = false;
                 firstPlayer.turn = true;
 
+            }
+
+            j++;
+            if(j>4 && j<=9){
+                console.log(j);
                 checkWin();
             }
+            else if(j===9){
+                checkWin();
+                
+            }
+
         }
+                     
             //  Check for win 
         
         function checkWin(){
@@ -117,6 +130,7 @@ function game(firstPlayer, secondPlayer, wins){
                 }
 
                 // Check for a draw
+        
             let j = 0;
             for(let i=0; i<9; i++){
 
@@ -125,7 +139,6 @@ function game(firstPlayer, secondPlayer, wins){
                 }
                 else{
                     j++;
-                    console.log(j)
                 }
 
                 if(j == 9){
@@ -133,7 +146,8 @@ function game(firstPlayer, secondPlayer, wins){
                     clearGrid();
                     activateGameboard();
                 }
-            }
+            }   
+
             
             function checkWinner(n){
                 if(boardArray[n] === 'X'){
@@ -152,16 +166,18 @@ function game(firstPlayer, secondPlayer, wins){
                 setScoreDisplay();
 
                     // Display winning message
-                if (this.winner.score === wins){
+                if (this.winner.score == wins){
                     displayGameWon(this.winner, this.text);
                 }
-                else{
+                else{                    
                     displayWinnerMessage(this.winner, this.text);
+
                 }
 
                     // Clear grid and enable disabled files
                 clearGrid();
                 activateGameboard();
+                playRound();
             }
 
             function setScoreDisplay(){
@@ -181,12 +197,27 @@ function game(firstPlayer, secondPlayer, wins){
 
             function displayGameWon(winnerObj, name){
                 console.log(winnerObj, name, 'game won')
+
+                const winGame = document.getElementById('winGame');
+                const winGameText = document.getElementById('winGameText');
+
+                winGame.style.display = 'block';
+                winGameText.innerHTML = `The winner is: ${name}! <br> Congratulations!`
             }
 
             function displayWinnerMessage(winnerObj, name){
-                console.log(winnerObj, name, 'whis game won')
-            }
 
+                const winSingleMatch = document.getElementById('winSingleMatch');
+                winSingleMatch.innerHTML = `${name} won this game!`
+                winSingleMatch.style.display = 'block';
+
+                    // Remove 'Display winner message' after 2 seconds
+                function removeDisplay(){
+                    winSingleMatch.style.display = 'none';
+                }
+
+                setTimeout(function(){removeDisplay();}, 2000);
+            }
             return;
         }
         return;
