@@ -90,63 +90,62 @@ function game(firstPlayer, secondPlayer, wins){
                 firstPlayer.turn = true;
 
             }
-
+                // Check for win if 5 or more moves were made
             j++;
             if(j>4 && j<=9){
                 console.log(j);
-                checkWin();
-            }
-            else if(j===9){
-                checkWin();
-                
+                checkWin(j);
             }
 
         }
                      
             //  Check for win 
         
-        function checkWin(){
+        function checkWin(turn){
             let boardArray = gameboardFiles.map(e=>e.innerHTML);
-
+                    // Horizontal lines
             for(let n=0; n<7; n+=3){
                 if( (boardArray[n] === boardArray[n+1]) &&  (boardArray[n] === boardArray[n+2]) ){
                     if(boardArray[n] === ''){continue;};
 
                     checkWinner(n);
                 }
+                else{
+                    if(turn == 9){finishDraw();}
+                    else{continue;};
+                }
             }
-
+                    // Vertical lines
             for(let n=0; n<3; n++){
                 if( (boardArray[n] === boardArray[n+3])  &&  (boardArray[n] === boardArray[n+6]) ){
                     if(boardArray[n] === ''){continue;};
 
                     checkWinner(n);
                 }  
-            }
+                else{
+                    if(turn == 9){finishDraw();}
+                    else{continue;};
+                }
 
+            }
+                    // Diagonal lines
             if( ((boardArray[0] === boardArray[4]) && (boardArray[0] === boardArray[8])) 
                 || (boardArray[2] === boardArray[4]) && (boardArray[2] === boardArray[6])){
                     if(boardArray[4] != ''){checkWinner(4);};
                 }
+            else{
+                if(turn == 9){finishDraw();}
+            }
 
-                // Check for a draw
+
+                // Finish game and start new round if draw
         
-            let j = 0;
-            for(let i=0; i<9; i++){
-
-                if(boardArray[i] === ''){
-                    break;
-                }
-                else{
-                    j++;
-                }
-
-                if(j == 9){
-                    displayWinnerMessage('draw');
-                    clearGrid();
-                    activateGameboard();
-                }
-            }   
+            function finishDraw(){
+                displayDrawGame();
+                clearGrid();
+                activateGameboard();
+                playRound();
+            }
 
             
             function checkWinner(n){
@@ -192,7 +191,8 @@ function game(firstPlayer, secondPlayer, wins){
             }
 
             function displayDrawGame(){
-                console.log("it's a draw")
+                let textDisplay = `It's a draw!`;
+                displayMessage(textDisplay);
             }
 
             function displayGameWon(name){
@@ -205,26 +205,24 @@ function game(firstPlayer, secondPlayer, wins){
             }
 
             function displayWinnerMessage(name){
+                let textDisplay = `${name} won this game!`;
+                displayMessage(textDisplay);
+            }
 
+            function displayMessage(textDisplay){
                 const winSingleMatch = document.getElementById('winSingleMatch');
-
-                if(name = 'draw'){
-                    winSingleMatch.innerHTML = `It's a draw!`
-                }
-                else{
-                    winSingleMatch.innerHTML = `${name} won this game!`
-                }
-
-
+                winSingleMatch.innerHTML = textDisplay;
                 winSingleMatch.style.display = 'block';
 
-                    // Remove 'Display winner message' after 2 seconds
+                // Remove 'Display winner message' after 2 seconds
                 function removeDisplay(){
                     winSingleMatch.style.display = 'none';
                 }
 
                 setTimeout(function(){removeDisplay();}, 2000);
             }
+
+
             return;
         }
         return;
