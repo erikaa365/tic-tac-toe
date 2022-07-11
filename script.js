@@ -142,7 +142,7 @@ function game(firstPlayer, secondPlayer, wins){
                 }
 
                 if(j == 9){
-                    displayDrawGame();
+                    displayWinnerMessage('draw');
                     clearGrid();
                     activateGameboard();
                 }
@@ -167,10 +167,10 @@ function game(firstPlayer, secondPlayer, wins){
 
                     // Display winning message
                 if (this.winner.score == wins){
-                    displayGameWon(this.winner, this.text);
+                    displayGameWon(this.text);
                 }
                 else{                    
-                    displayWinnerMessage(this.winner, this.text);
+                    displayWinnerMessage(this.text);
 
                 }
 
@@ -195,8 +195,7 @@ function game(firstPlayer, secondPlayer, wins){
                 console.log("it's a draw")
             }
 
-            function displayGameWon(winnerObj, name){
-                console.log(winnerObj, name, 'game won')
+            function displayGameWon(name){
 
                 const winGame = document.getElementById('winGame');
                 const winGameText = document.getElementById('winGameText');
@@ -205,10 +204,18 @@ function game(firstPlayer, secondPlayer, wins){
                 winGameText.innerHTML = `The winner is: ${name}! <br> Congratulations!`
             }
 
-            function displayWinnerMessage(winnerObj, name){
+            function displayWinnerMessage(name){
 
                 const winSingleMatch = document.getElementById('winSingleMatch');
-                winSingleMatch.innerHTML = `${name} won this game!`
+
+                if(name = 'draw'){
+                    winSingleMatch.innerHTML = `It's a draw!`
+                }
+                else{
+                    winSingleMatch.innerHTML = `${name} won this game!`
+                }
+
+
                 winSingleMatch.style.display = 'block';
 
                     // Remove 'Display winner message' after 2 seconds
