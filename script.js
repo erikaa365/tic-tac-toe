@@ -93,7 +93,6 @@ function game(firstPlayer, secondPlayer, wins){
                 // Check for win if 5 or more moves were made
             j++;
             if(j>4 && j<=9){
-                console.log(j);
                 checkWin(j);
             }
 
@@ -103,6 +102,7 @@ function game(firstPlayer, secondPlayer, wins){
         
         function checkWin(turn){
             let boardArray = gameboardFiles.map(e=>e.innerHTML);
+            let draw = 0;
                     // Horizontal lines
             for(let n=0; n<7; n+=3){
                 if( (boardArray[n] === boardArray[n+1]) &&  (boardArray[n] === boardArray[n+2]) ){
@@ -111,7 +111,7 @@ function game(firstPlayer, secondPlayer, wins){
                     checkWinner(n);
                 }
                 else{
-                    if(turn == 9){finishDraw();}
+                    if(turn == 9){checkDrawCount();}
                     else{continue;};
                 }
             }
@@ -123,7 +123,7 @@ function game(firstPlayer, secondPlayer, wins){
                     checkWinner(n);
                 }  
                 else{
-                    if(turn == 9){finishDraw();}
+                    if(turn == 9){checkDrawCount();}
                     else{continue;};
                 }
 
@@ -134,7 +134,15 @@ function game(firstPlayer, secondPlayer, wins){
                     if(boardArray[4] != ''){checkWinner(4);};
                 }
             else{
-                if(turn == 9){finishDraw();}
+                if(turn == 9){checkDrawCount();}
+            }
+
+            function checkDrawCount(){
+                draw++; 
+                if(draw === 3){
+                    finishDraw();
+                    draw = 0;
+                }
             }
 
 
@@ -147,7 +155,7 @@ function game(firstPlayer, secondPlayer, wins){
                 playRound();
             }
 
-            
+                // Check who won           
             function checkWinner(n){
                 if(boardArray[n] === 'X'){
                     this.winner = firstPlayer;  
@@ -190,24 +198,51 @@ function game(firstPlayer, secondPlayer, wins){
                 }
             }
 
-            function displayDrawGame(){
-                let textDisplay = `It's a draw!`;
-                displayMessage(textDisplay);
-            }
-
             function displayGameWon(name){
 
                 const winGame = document.getElementById('winGame');
                 const winGameText = document.getElementById('winGameText');
 
                 winGame.style.display = 'block';
-                winGameText.innerHTML = `The winner is: ${name}! <br> Congratulations!`
+                winGameText.innerHTML = `The winner is: ${name}! <br> Congratulations!`;
+
+                    // Set button functions
+                const rematchBtn = document.getElementById('rematchBtn');
+                const newGameBtn = document.getElementById('newGameBtn');
+
+                rematchBtn.onclick = () => rematch();
+                newGameBtn.onclick = () => newGame();
+
+                function rematch(){
+                    restartScore();
+                    playRound();
+                }
+
+                function newGame(){
+                    restartScore();
+                    openForm();
+                }
+
+                function restartScore(){
+                    firstPlayer.score = 0;
+                    secondPlayer.score = 0;
+                    setScoreDisplay();
+                    winGame.style.display = 'none';
+                }
+
+
             }
 
             function displayWinnerMessage(name){
                 let textDisplay = `${name} won this game!`;
                 displayMessage(textDisplay);
             }
+
+            function displayDrawGame(){
+                let textDisplay = `It's a draw!`;
+                displayMessage(textDisplay);
+            }
+
 
             function displayMessage(textDisplay){
                 const winSingleMatch = document.getElementById('winSingleMatch');
@@ -221,18 +256,12 @@ function game(firstPlayer, secondPlayer, wins){
 
                 setTimeout(function(){removeDisplay();}, 2000);
             }
-
-
-            return;
         }
-        return;
     }
-    return;
 }
 
 
 
 
 
-//new game & rematch buttons
 
