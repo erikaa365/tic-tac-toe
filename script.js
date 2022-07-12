@@ -254,11 +254,27 @@ function game(firstPlayer, secondPlayer, wins){
                     winSingleMatch.style.display = 'none';
                 }
 
-                setTimeout(function(){removeDisplay();}, 2000);
+                setTimeout(function(){removeDisplay();}, 5000);
             }
         }
     }
 }
+
+
+const slider = document.getElementById('wins');
+slider.onmousemove = (e) => updateWinsValue(e.target.value);
+slider.onchange = (e) => changeWins(e.target.value);
+
+function changeWins(wins){
+    updateWinsValue(wins);
+}
+
+//Size section
+function updateWinsValue(wins){
+    document.getElementById('winsSettingDisplay').textContent = wins;
+}
+
+
 
 
 
