@@ -67,15 +67,19 @@ function game(firstPlayer, secondPlayer, wins){
 
         function activateGameboard(){
                 for(let i=0; i<9; i++){
-                    gameboardFiles[i].onclick = (e) => playTurn(e);
+                    gameboardFiles[i].onclick = (e) => checkIfAvailable(e);
                 }
             }
 
+            // Play turn if file is available
+        function checkIfAvailable(e){
+            if(e.target.textContent === 'X' || e.target.textContent === 'O'){return;}
+            else playTurn(e);
+        }
+
         let j = 0; 
 
-        function playTurn(e){
-                // Disable filled file
-            e.target.removeEventListener('click', playTurn);
+        function playTurn(e){           
 
                 // Put X or O in file
             if(firstPlayer.turn){

@@ -68,14 +68,18 @@ body *{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 150px;
 }
 
 .left{
-    width: 300px;
+    max-width: 300px;
     background-color: var(--score-background);
     border-radius: 30px;
     box-shadow: 0px 0px 35px 10px var(--score-background);
+    flex-grow: 1;
+}
+
+.empty_width{
+    width: 300px;
 }
 
 #resultHeader{
@@ -164,6 +168,10 @@ body *{
     border-bottom: none;
 }
 
+.empty{
+    flex-shrink: 1;
+    flex-grow: 1;
+}
 
 
 /*  FOOTER  */
@@ -197,6 +205,9 @@ body *{
     align-items: center;
     justify-content: space-around;
     gap: 10px;
+
+    height: 400px;
+    width: 300px;
 
     position: fixed;
     top: 55%;
