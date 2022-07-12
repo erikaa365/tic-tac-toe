@@ -254,7 +254,7 @@ function game(firstPlayer, secondPlayer, wins){
                     winSingleMatch.style.display = 'none';
                 }
 
-                setTimeout(function(){removeDisplay();}, 5000);
+                setTimeout(function(){removeDisplay();}, 4500);
             }
         }
     }
