@@ -276,7 +276,8 @@ button{
 
 /* SINGLE MATCH WIN && WIN GAME CONTAINER */
 #winSingleMatch, #winGame{
-    background-color: var(--light-background);
+    backdrop-filter: blur(1rem);
+    background-color: rgba(0, 0, 0, 0.445);
     text-align: center;
 
     display: block;
